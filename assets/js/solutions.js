@@ -5,6 +5,8 @@ $(document).ready(function() {
       let pageInfo = $(this).attr('data-tab');
       $('.tab-item').hide();
       $('.' + pageInfo).show();
+
+      window.location.hash = $(this).attr('data-tab')
     })
 });
 

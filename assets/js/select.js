@@ -1,5 +1,6 @@
 const selects = document.querySelectorAll('.select-head');
 const options = document.querySelectorAll('.options li');
+const specifyParameters = document.querySelectorAll('.specify-parameters');
 
 selects.forEach(select => {
     select.addEventListener('click', () => {
@@ -7,14 +8,11 @@ selects.forEach(select => {
     })
 });
 
-// let j = 0;
-// options.forEach(option => {
-//     option.addEventListener('click', () => {
-//         // options.forEach(elem => {
-//         //     elem.classList.remove('checked')
-//         // })
-//         // this.parentElement.children[j].classList.remove('checked')
-//         console.dir(option.parentElement)
-//         option.classList.add('checked')
-//     })
-// });
+specifyParameters.forEach(elem => {
+    elem.addEventListener('click', () => {
+        selects.forEach(select => {
+            select.parentElement.classList.add('showSelect')
+        });
+    })
+})
+
