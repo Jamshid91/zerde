@@ -3,7 +3,6 @@ const calcName = document.getElementById('name-calc'),
       calcPhone = document.getElementById('phone-calc'),
       fild = document.getElementById('fild'),
       formBtn_calc = document.querySelector('.popUp-calculate .form-submit'),
-      popUp_calculate = document.querySelector('.popUp-calculate'),
       calculate_btn = document.querySelector('.calculate-btn');
 
 
@@ -13,7 +12,7 @@ calculate_btn.addEventListener('click', () => {
 });
 
 formBtn_calc.addEventListener('click', () => {
-checkInputs();
+checkInputCalc();
 const calcNameSuc =  calcName.nextElementSibling.classList,
       calcPhoneSuc =  calcPhone.nextElementSibling.classList,
       fildSuc =  fild.nextElementSibling.classList;
@@ -25,7 +24,7 @@ if(calcNameSuc == 'success' && calcPhoneSuc == 'success' && fildSuc == 'success'
 }
 })
 
-function checkInputs() {
+function checkInputCalc() {
 const calcNameVal = calcName.value.trim(),
       calcPhoneVal = calcPhone.value.trim(),
       fildVal = fild.value.trim();
@@ -36,7 +35,7 @@ if(calcNameVal == '' || calcName.value.length <= 2) {
   setSuccess(calcName)
 }
 
-if(calcPhoneVal == '') {
+if(calcPhoneVal == '' || calcPhone.value.substr(-1) === '_') {
   setError(calcPhone)
 } else {
   setSuccess(calcPhone)

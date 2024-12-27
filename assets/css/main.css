@@ -152,6 +152,10 @@ input, textarea, select, button {
   cursor: pointer;
 }
 
+.hidden {
+  display: none !important;
+}
+
 .container {
   max-width: 1380px;
   padding: 0 20px;
@@ -1700,9 +1704,23 @@ main .collections-box .item-box .item .list li {
   border-bottom: 1px solid #9A7A5F;
   padding: 10px 24px;
   margin-bottom: 12px;
+  transition: 0.3s all;
+  position: relative;
 }
 main .collections-box .item-box .item .list li:last-child {
   margin-bottom: 0;
+}
+main .collections-box .item-box .item .list li a {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: end;
+  padding-right: 38px;
+}
+main .collections-box .item-box .item .list li a:hover svg path {
+  fill: #9A7A5F;
 }
 main .collections-box .item-box .item .list li p {
   display: flex;
@@ -1714,6 +1732,7 @@ main .collections-box .item-box .item .list li p::before {
 }
 main .faqs {
   margin-top: 60px;
+  overflow: hidden;
 }
 main .faqs-box {
   width: 50%;
@@ -1777,24 +1796,18 @@ main .newsIn-block5 .new-info .info {
 main .news {
   padding: 60px 0;
 }
-main .news .swiper-slide {
-  display: flex;
-  flex-wrap: wrap;
-  justify-content: space-between;
-}
 main .news .new {
-  margin-bottom: 40px;
   display: flex;
   flex-direction: column;
   align-items: start;
 }
 main .news .new .item-hide {
-  width: auto;
-  height: auto;
+  width: 100%;
+  height: 204px;
 }
 main .news .new-img {
   width: 100%;
-  height: 204px;
+  height: 100%;
   object-fit: cover;
   object-position: center;
 }
@@ -1814,31 +1827,39 @@ main .news .new-name {
   line-height: 22px;
   font-weight: 500;
 }
-main .news .new:nth-child(1) {
-  width: 58%;
+main .news-head {
+  margin-bottom: 40px;
 }
-main .news .new:nth-child(1) .new-img {
-  width: 88%;
+main .news-head .news-item {
+  width: 50%;
+}
+main .news-head .news-item:first-child .new .item-hide {
   height: 307px;
 }
-main .news .new:nth-child(2) {
-  width: 24%;
+main .news-head .news-item:last-child {
+  width: 40%;
 }
-main .news .new:nth-child(3) {
-  width: 15.3%;
+main .news-head .news-item:last-child .new .item-hide {
+  height: 204px;
 }
-main .news .new:nth-child(4), main .news .new:nth-child(7), main .news .new:nth-child(9), main .news .new:nth-child(12) {
-  width: 24%;
+main .news-head .news-item:last-child .new:last-child {
+  width: 37%;
 }
-main .news .new:nth-child(5), main .news .new:nth-child(6), main .news .new:nth-child(8), main .news .new:nth-child(10), main .news .new:nth-child(11), main .news .new:nth-child(13) {
-  width: 15.3%;
+main .news-head .news-item:last-child .new:first-child {
+  width: 60%;
 }
-main .news .swiper-btns {
+main .news-body {
+  display: grid;
+  grid-template-columns: repeat(5, 1fr);
+  grid-column-gap: 25px;
+  grid-row-gap: 40px;
+}
+main .news .news-btns {
   width: 206px;
   margin-top: 45px;
   justify-content: space-between;
 }
-main .news .swiper-btns .swiper-pagination-news {
+main .news .news-btns .pagination-news {
   display: flex;
   justify-content: center;
   align-items: center;
@@ -1847,20 +1868,30 @@ main .news .swiper-btns .swiper-pagination-news {
   letter-spacing: 1.5px;
   width: auto;
 }
-main .news .swiper-btns .swiper-pagination-news .swiper-pagination-current {
+main .news .news-btns .pagination-news span {
+  display: block;
+  margin: 0 5px;
+}
+main .news .news-btns .pagination-news .active {
   font-weight: 500;
-  display: inline-block;
-  margin-right: 4px;
 }
-main .news .swiper-btns .swiper-pagination-news .swiper-pagination-total {
-  display: inline-block;
-  margin-left: 4px;
-}
-main .news .swiper-btns .swiper-btn {
+main .news .news-btns .news-prev,
+main .news .news-btns .news-next {
+  width: 42px;
+  height: 42px;
   background: #E9E5DE;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
 }
-main .news .swiper-btns .swiper-btn:hover {
+main .news .news-btns .news-prev:hover,
+main .news .news-btns .news-next:hover {
   background: #1D120C;
+}
+main .news .news-btns .news-prev:hover svg path,
+main .news .news-btns .news-next:hover svg path {
+  fill: #fff;
 }
 main .newsIn {
   width: 70%;
@@ -2137,7 +2168,7 @@ main .contact-form .form .form-submit:hover {
   margin: 80px auto;
 }
 .popUp .form-item {
-  margin: 30px 0 0;
+  margin: 30px 0 39px;
 }
 .popUp .form-item .input-box {
   width: 49%;
@@ -2147,7 +2178,7 @@ main .contact-form .form .form-submit:hover {
   font-size: 18px;
   line-height: 16px;
   font-weight: 500;
-  margin: 39px 0;
+  margin-bottom: 39px;
   cursor: pointer;
   display: flex;
   align-items: center;
@@ -2188,6 +2219,7 @@ main .contact-form .form .form-submit:hover {
 }
 .collection-item {
   align-items: start;
+  flex-direction: column;
 }
 .collection .select {
   margin-top: 12px;
@@ -2518,34 +2550,35 @@ main .contact-form .form .form-submit:hover {
   .main .news {
     padding: 30px 0;
   }
-  .main .news .new {
-    margin-bottom: 15px;
+  .main .news-head {
+    margin-bottom: 40px;
   }
-  .main .news .new-img {
-    height: 120px;
+  .main .news-head .news-item {
+    width: 50%;
   }
-  .main .news .new-name {
-    font-size: 14px;
-    line-height: 16px;
+  .main .news-head .news-item:first-child .new .item-hide {
+    height: 250px;
   }
-  .main .news .new:nth-child(1) {
-    width: 58%;
+  .main .news-head .news-item:last-child {
+    width: 48%;
   }
-  .main .news .new:nth-child(1) .new-img {
-    width: 100%;
-    height: 200px;
+  .main .news-head .news-item:last-child .new .item-hide {
+    height: 204px;
   }
-  .main .news .new:nth-child(2) {
-    width: 24%;
+  .main .news-head .news-item:last-child .new:last-child {
+    width: 37%;
   }
-  .main .news .new:nth-child(3) {
-    width: 15.3%;
+  .main .news-head .news-item:last-child .new:first-child {
+    width: 60%;
   }
-  .main .news .new:nth-child(4), .main .news .new:nth-child(7), .main .news .new:nth-child(9), .main .news .new:nth-child(12) {
-    width: 24%;
+  .main .news-body {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    grid-column-gap: 15px;
+    grid-row-gap: 40px;
   }
-  .main .news .new:nth-child(5), .main .news .new:nth-child(6), .main .news .new:nth-child(8), .main .news .new:nth-child(10), .main .news .new:nth-child(11), .main .news .new:nth-child(13) {
-    width: 15.3%;
+  .main .news-body .new:last-child {
+    display: none;
   }
   .main .news-similar .container {
     padding-right: 0;
@@ -3054,28 +3087,54 @@ main .contact-form .form .form-submit:hover {
   .main .collections-box .item-box .item-title {
     margin-right: 0;
   }
-  .main .news .new {
-    margin-bottom: 15px;
+  .main .news {
+    padding: 30px 0;
   }
-  .main .news .new-img {
-    height: 158px;
+  .main .news-head {
+    margin-bottom: 40px;
   }
-  .main .news .new-name {
-    font-size: 18px;
-    line-height: 22px;
-  }
-  .main .news .new:nth-child(1), .main .news .new:nth-child(2) {
+  .main .news-head .news-item {
     width: 100%;
   }
-  .main .news .new:nth-child(1) .new-img, .main .news .new:nth-child(2) .new-img {
-    width: 100%;
+  .main .news-head .news-item:first-child .new .item-hide {
     height: 307px;
   }
-  .main .news .new:nth-child(3), .main .news .new:nth-child(4), .main .news .new:nth-child(5), .main .news .new:nth-child(6) {
-    width: 49%;
+  .main .news-head .news-item:last-child {
+    width: 100%;
   }
-  .main .news .new:nth-child(7), .main .news .new:nth-child(8), .main .news .new:nth-child(9), .main .news .new:nth-child(10), .main .news .new:nth-child(11), .main .news .new:nth-child(12), .main .news .new:nth-child(13) {
+  .main .news-head .news-item:last-child .new .item-hide {
+    height: 204px;
+  }
+  .main .news-head .news-item:last-child .new:last-child {
     display: none;
+  }
+  .main .news-head .news-item:last-child .new:first-child {
+    display: block;
+    width: 100%;
+    margin-top: 40px;
+  }
+  .main .news-body {
+    grid-template-columns: repeat(2, 1fr);
+  }
+  .main .news-body .new {
+    display: none;
+  }
+  .main .news-body .new:nth-child(1), .main .news-body .new:nth-child(2), .main .news-body .new:nth-child(3), .main .news-body .new:nth-child(4) {
+    display: block;
+  }
+  .main .news-body .new .item-hide {
+    height: 160px;
+  }
+  .main .news .news-btns {
+    width: 160px;
+    margin-top: 30px;
+  }
+  .main .news .news-btns .pagination-news {
+    font-size: 14px;
+  }
+  .main .news .news-btns .pagination-news span {
+    display: block;
+    margin: 0 1px;
   }
   .main .newsIn-box .info-text {
     width: 100%;
